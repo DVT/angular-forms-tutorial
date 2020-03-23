@@ -4,7 +4,9 @@
   <form class="col-sm-5">
     <div class="form-group">
       <label for="title">Title</label>
-      <select class="form-control" id="title"></select>
+      <select class="form-control" id="title">
+        <option *ngFor="let title of titles" [value]="title">{{title}}</option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -24,7 +26,9 @@
 
     <div class="form-group">
       <label for="gender">Gender</label>
-      <select class="form-control" id="gender"></select>
+      <select class="form-control" id="gender">
+        <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+      </select>
     </div>
 
     <div class="form-group">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '../models/title';
+import {Gender} from '../models/gender';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  titles: Title[];
+  genders: Gender[];
+
+  constructor() {
+    this.genders = Object.values(Gender) as Gender[];
+    this.titles = Object.values(Title) as Title[];
+  }
 
   ngOnInit() {
   }
