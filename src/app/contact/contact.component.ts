@@ -29,7 +29,7 @@ export class ContactComponent implements OnInit {
       birthDate: new Date('1982-7-1'),
       title: Title.Mr,
       phoneNumber: '+27829403800',
-      emailAddress: 'jdoe@gmail.com'
+      email: 'jdoe@gmail.com'
     } as Contact;
   }
 
