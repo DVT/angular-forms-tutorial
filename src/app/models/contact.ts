@@ -10,5 +10,5 @@ export class Contact {
   birthDate: Date;
   title: Title;
   phoneNumber: string;
-  emailAddress: string;
+  email: string;
 }
