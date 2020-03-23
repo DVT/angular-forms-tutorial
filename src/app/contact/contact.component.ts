@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '../models/title';
 import {Gender} from '../models/gender';
 import {Contact} from '../models/contact';
@@ -21,6 +21,16 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contact = {
+      firstName: 'John',
+      lastName: 'Doe',
+      name: 'John Doe',
+      gender: Gender.Male,
+      birthDate: new Date('1982-7-1'),
+      title: Title.Mr,
+      phoneNumber: '+27829403800',
+      emailAddress: 'jdoe@gmail.com'
+    } as Contact;
   }
 
   selectTitle(title: string) {
