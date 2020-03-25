@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '../models/title';
 import {Gender} from '../models/gender';
 import {Contact} from '../models/contact';
+import {NgModel} from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -26,15 +27,13 @@ export class ContactComponent implements OnInit {
       lastName: 'Doe',
       name: 'John Doe',
       gender: Gender.Male,
-      birthDate: new Date('1982-7-1'),
-      title: Title.Mr,
       phoneNumber: '+27829403800',
       email: 'jdoe@gmail.com'
     } as Contact;
   }
 
-  selectTitle(title: string) {
-    this.contact.title = title as Title;
+  displayContact() {
+    alert(JSON.stringify(this.contact));
   }
 
 }

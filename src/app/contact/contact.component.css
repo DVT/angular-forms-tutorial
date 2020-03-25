@@ -9,3 +9,7 @@ h1 {
 label {
     font-weight: 500;
 }
+
+.ng-invalid:not(form) {
+  border: 1px solid #FF0039;
+}

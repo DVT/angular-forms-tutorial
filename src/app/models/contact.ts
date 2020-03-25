@@ -7,7 +7,6 @@ export class Contact {
   middleName: string;
   lastName: string;
   gender: Gender;
-  birthDate: Date;
   title: Title;
   phoneNumber: string;
   email: string;

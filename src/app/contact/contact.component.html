@@ -1,17 +1,22 @@
 <div class="contact-form container">
   <h1 class="mx-3">New Contact</h1>
 
-  <form class="col-sm-5" #contactForm="ngForm">
+  <form class="col-sm-5" #contactForm="ngForm" (ngSubmit)="displayContact()">
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title">Title <b class="text-danger">*</b></label>
       <select [(ngModel)]="contact.title" class="form-control" id="title" name="title" required>
+        <option [ngValue]="null" selected="selected" hidden="hidden"></option>
         <option *ngFor="let title of titles" [value]="title">{{title}}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="firstName">First name</label>
-      <input [(ngModel)]="contact.firstName" type="text" class="form-control" name="firstName" id="firstName" autocapitalize="off" autocomplete="false" required>
+      <label for="firstName">First name <b class="text-danger">*</b></label>
+      <input [(ngModel)]="contact.firstName" type="text" class="form-control" name="firstName" id="firstName" autocapitalize="off" autocomplete="false" required #firstName="ngModel">
+
+      <div *ngIf="firstName.touched && firstName.invalid && firstName.errors.required">
+        <span class="text-danger">First name is required.</span>
+      </div>
     </div>
 
     <div class="form-group">
@@ -20,32 +25,36 @@
     </div>
 
     <div class="form-group">
-      <label for="lastName">Surname</label>
-      <input [(ngModel)]="contact.lastName" type="text" class="form-control" id="lastName" name="lastName" autocapitalize="off" autocomplete="false" required>
+      <label for="lastName">Surname <b class="text-danger">*</b></label>
+      <input [(ngModel)]="contact.lastName" type="text" class="form-control" id="lastName" name="lastName" autocapitalize="off" autocomplete="false" required #lastName="ngModel">
+
+      <div *ngIf="lastName.touched && lastName.invalid && lastName.errors.required">
+        <span class="text-danger">Surname is required.</span>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="gender">Gender</label>
-      <select [(ngModel)]="contact.gender" class="form-control" id="gender" name="gender" required>
+      <label for="gender">Gender <b class="text-danger">*</b></label>
+      <select [(ngModel)]="contact.gender" class="form-control" id="gender" name="gender">
         <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="dateOfBirth">Birth date</label>
-      <input [(ngModel)]="contact.birthDate" type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" />
+      <label for="phoneNumber">Phone number <b class="text-danger">*</b></label>
+      <input [(ngModel)]="contact.phoneNumber" appLocalPhoneNumber type="text" class="form-control" id="phoneNumber" name="phoneNumber" required #phoneNumber="ngModel">
+
+      <div *ngIf="phoneNumber.touched && phoneNumber.invalid">
+        <span *ngIf="phoneNumber.errors.required" class="text-danger">Phone number is required.</span>
+        <span *ngIf="phoneNumber.errors.localPhoneNumber" class="text-danger">Locale code invalid.</span>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="phoneNumber">Phone number</label>
-      <input [(ngModel)]="contact.phoneNumber" type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+      <label for="email">Email <b class="text-danger">*</b></label>
+      <input [(ngModel)]="contact.email" type="email" class="form-control" id="email" name="email" required>
     </div>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input [(ngModel)]="contact.email" type="email" class="form-control" id="email" name="email">
-    </div>
-
-    <button type="submit" class="btn btn-primary my-2">Submit</button>
+    <button type="submit" [disabled]="!contactForm.valid" class="btn btn-primary my-2">Submit</button>
   </form>
 </div>
