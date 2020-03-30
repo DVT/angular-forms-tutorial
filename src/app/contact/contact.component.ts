@@ -4,7 +4,7 @@ import {Gender} from '../models/gender';
 import {Contact} from '../models/contact';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PhoneNumberValidationFactory} from '../forms/validators/PhoneNumberValidationFactory';
-import {combineLatest} from "rxjs";
+import {combineLatest} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
 @Component({
@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
       firstName: new FormControl('', { validators: [ Validators.required ]}),
       middleName: new FormControl(''),
       lastName: new FormControl('', { validators: [ Validators.required ]}),
-      gender: new FormControl('', { updateOn: 'blur', validators: [ Validators.required ]}),
+      gender: new FormControl('', { updateOn: 'blur' }),
       phoneNumber: new FormControl('', { validators: [ PhoneNumberValidationFactory.localPhoneNumber ] }),
       email: new FormControl('', { validators: [ Validators.email ] })
     });
@@ -72,9 +72,8 @@ export class ContactComponent implements OnInit {
       this.middleName.valueChanges.pipe(startWith(this.contact.middleName)),
       this.lastName.valueChanges.pipe(startWith(this.contact.lastName)),
     )
-      .pipe(map(x => ({ firstName: x[0], middleName: x[1], lastName: x[2] })))
+      .pipe(map(x => ({ firstName: x[0] || '', middleName: x[1] || '', lastName: x[2] || '' })))
       .subscribe(names => {
-        console.log(names);
         this.contact.name = `${names.firstName} ${names.middleName} ${names.lastName}`;
     });
 
