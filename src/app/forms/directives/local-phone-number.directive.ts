@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn} from '@angular/forms';
-import {PhoneNumberValidationFactory} from '../validators/PhoneNumberValidationFactory';
+import {PhoneNumberValidationFactory} from '../validators/phone-number-validation-factory';
 
 @Directive({
   selector: '[appLocalPhoneNumber]',

@@ -3,7 +3,7 @@ import {Title} from '../models/title';
 import {Gender} from '../models/gender';
 import {Contact} from '../models/contact';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {PhoneNumberValidationFactory} from '../forms/validators/PhoneNumberValidationFactory';
+import {PhoneNumberValidationFactory} from '../forms/validators/phone-number-validation-factory';
 import {combineLatest} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
       middleName: new FormControl(''),
       lastName: new FormControl('', { validators: [ Validators.required ]}),
       gender: new FormControl('', { updateOn: 'blur' }),
-      phoneNumber: new FormControl('', { validators: [ PhoneNumberValidationFactory.localPhoneNumber ] }),
+      phoneNumber: new FormControl('', { validators: [ PhoneNumberValidationFactory.localPhoneNumber, Validators.required ] }),
       email: new FormControl('', { validators: [ Validators.email ] })
     });
 
@@ -85,6 +85,7 @@ export class ContactComponent implements OnInit {
 
     this.email.valueChanges
       .subscribe(x => this.contact.email = x);
+
   }
 
   displayContact() {

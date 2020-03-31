@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary my-2">Submit</button>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary my-2" #submit>Submit</button>
 
   </form>
 </div>
